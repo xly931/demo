@@ -1,0 +1,41 @@
+#include "HSProxy.h"
+#include "ProxyMangr.h"
+#include <queue>
+#include <stdlib.h>
+
+string g_ip = "10.100.5.191";
+unsigned short g_port = 10000;
+std::greater<long> gt;
+void test()
+{
+	std::priority_queue<long,vector<long>,greater<long> > heap_que;
+	heap_que.push(5);
+	heap_que.push(1);
+	heap_que.push(7);
+	heap_que.push(3);
+	heap_que.push(4);
+	std::cout<<heap_que.top()<<std::endl;
+	heap_que.pop();
+	std::cout<<heap_que.top()<<std::endl;
+}
+int main(int argc, char* argv[])
+{
+
+	if (argc >= 2)
+	{
+		g_ip = argv[1];
+	}
+	if (argc >= 3)
+	{
+		string port_str = argv[2];
+		g_port = atoi(port_str.c_str());
+	}
+
+	Manager mng;
+	mng.start();
+	char c;
+	cin>>c;
+	mng.stop();
+	cin>>c;
+	return 0;
+}
